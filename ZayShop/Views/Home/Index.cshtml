@@ -1,0 +1,130 @@
+﻿@model ZayShop.Models.Home.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model.Slider.Count() > 0)
+{
+    <!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            @for (int i = 0; i < Model.Slider.Count(); i++)
+            {
+                <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="@i" class="@Html.Raw(i == 0 ? "active" : "")"></li>
+            }
+        </ol>
+        <div class="carousel-inner">
+            @for (int i = 0; i < Model.Slider.Count(); i++)
+            {
+                var item = Model.Slider.ToArray()[i];
+                <div class="carousel-item @Html.Raw(i == 0 ? "active" : "")">
+                    <div class="container">
+                        <div class="row p-5">
+                            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                <img class="img-fluid" src="@item.ImagePath" alt="">
+                            </div>
+                            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                <div class="text-align-left align-self-center">
+                                    <h1 class="h1 text-success">@item.Title</h1>
+                                    <h3 class="h2">@item.Subtitle</h3>
+                                    <p>@item.Description</p>
+                                    @if (item.ButtonText.Length > 0 && item.ButtonUrl.Length > 0)
+                                    {
+                                        <a href="@item.ButtonUrl" class="btn btn-success">
+                                            @item.ButtonText
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    <!-- End Banner Hero -->
+}
+@if (Model.CategoriesOfTheMoon.Count() > 0)
+{
+    <!-- Start Categories of The Month -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Categories of The Month</h1>
+                <p>
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.CategoriesOfTheMoon)
+            {
+                <div class="col-12 col-md-4 p-5 mt-3">
+                    <a href="@item.Url">
+                        <img src="@item.ImagePath" class="rounded-circle img-fluid border">
+                    </a>
+                    <h5 class="text-center mt-3 mb-3">@item.Title</h5>
+                    <p class="text-center">
+                        <a class="btn btn-success" href="@item.Url">Go Shop</a>
+                    </p>
+                </div>
+            }
+        </div>
+    </section>
+    <!-- End Categories of The Month -->
+}
+@if (Model.FeaturedProducts.Count() > 0)
+{
+    <!-- Start Featured Product -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Featured Product</h1>
+                    <p>
+                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.FeaturedProducts)
+                {
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <a href="@item.Url">
+                                <img src="@item.ImagePath" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-muted text-right">$@item.Price</li>
+                                </ul>
+                                <a href="@item.Url" class="h2 text-decoration-none text-dark">@item.Name</a>
+                                <p class="card-text">
+                                    @item.ShortDescription
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </section>
+    <!-- End Featured Product -->
+}

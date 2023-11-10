@@ -1,0 +1,1 @@
+Sitenin yapim asamasinda cok kiymetli,konusunda uzman,Bilgisine saygi duydugum  degerli hocam ILKER TURAN'a Calismalarimda bana verdigi desteklerinden oturu tesekkur ederim..
